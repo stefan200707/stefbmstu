@@ -38,18 +38,44 @@ int main() {
 
 
     for (int i = 0, j = n - 1; i < n; j = i++) {
+        int ddt = 0;
+        bool validAB = true;
+        int pointsOnAB = 0;
         int A[] = {a[i][0],a[i][1]};
         int B[] = {a[j][0],a[j][1]};
         int C[] = {b[i][0],b[i][1]};
         int D[] = {b[j][0],b[j][1]};
         int AB[] = {A[0],A[1],B[0],B[1]};
         int CD[] = {C[0],C[1],D[0],D[1]};
-        int d1 = ((B[0] - A[0])*(C[1] - A[1]) - (B[1] - A[1]) * (C[0] - A[0]));
-        int d2 = ((B[0] - A[0])*(D[1] - A[1]) - (B[1] - A[1]) * (D[0] - A[0]));
-        if (d1 * d2 <= 0) {
-            cout << "peresec" << i << " " << j << " " << endl;
-            return 0;
+        for (int i = 2; i < 4; i++) {
+            int x = a[i][0], y = a[i][1];
+            if ((y - A[1]) * (B[0] - A[0]) == (x - A[0]) * (B[1] - A[1])) {
+                pointsOnAB++;
+            }
         }
+        if (pointsOnAB == 2) {
+            validAB = false;
+        }
+        bool validCD = true;
+        int pointsOnCD = 0;
+        for (int i = 0; i < 2; i++) {
+            int x = a[i][0], y = a[i][1];
+            if ((y - C[1]) * (D[0] - C[0]) == (x - C[0]) * (D[1] - C[1])) {
+                pointsOnCD++;
+            }
+        }
+        if (pointsOnCD == 2) {
+            validCD = false;
+        }        
+        int d1 = ((B[0] - A[0]) * (C[1] - A[1]) - (B[1] - A[1]) * (C[0] - A[0]));
+        int d2 = ((B[0] - A[0]) * (D[1] - A[1]) - (B[1] - A[1]) * (D[0] - A[0]));
+        
+        if (!validAB || !validCD) {
+            ddt++;
+        } else if (d1 * d2 <= 0) {
+            cout << "peresec" << endl;
+            return 0;
+        } 
     }
     cout << "neperesec" << endl;
     return 0;
