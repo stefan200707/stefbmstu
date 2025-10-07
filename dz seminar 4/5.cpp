@@ -1,25 +1,51 @@
 #include <iostream>
 using namespace std;
+
 int main() {
     int n, m;
     cin >> n >> m;
-    int c = 0;
-    int a[n][n];
+    int a[n][m];
+
+    // Ввод матрицы
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             cin >> a[i][j];
         }
     }
-    int min_str[n];
-    int max_str[n];
-    int min_stolb[m];
-    int max_stolb[m];
+
+    // Минимумы и максимумы по строкам
+    int minRow[n], maxRow[n];
     for (int i = 0; i < n; i++) {
-        int min_st = a[i][0];
-        for (int j = 0; j < m; j++) {
-            if (min_st < a[i][j]);
+        minRow[i] = a[i][0];
+        maxRow[i] = a[i][0];
+        for (int j = 1; j < m; j++) {
+            if (a[i][j] < minRow[i]) minRow[i] = a[i][j];
+            if (a[i][j] > maxRow[i]) maxRow[i] = a[i][j];
         }
     }
-    
+
+    // Минимумы и максимумы по столбцам
+    int minCol[m], maxCol[m];
+    for (int j = 0; j < m; j++) {
+        minCol[j] = a[0][j];
+        maxCol[j] = a[0][j];
+        for (int i = 1; i < n; i++) {
+            if (a[i][j] < minCol[j]) minCol[j] = a[i][j];
+            if (a[i][j] > maxCol[j]) maxCol[j] = a[i][j];
+        }
+    }
+
+    // Проверка на седловые точки
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (a[i][j] == minRow[i] && a[i][j] == maxCol[j]) {
+                cout << "type=A (" << i << "," << j << ") = " << a[i][j] << endl;
+            }
+            if (a[i][j] == maxRow[i] && a[i][j] == minCol[j]) {
+                cout << "type=B (" << i << "," << j << ") = " << a[i][j] << endl;
+            }
+        }
+    }
+
     return 0;
 }
