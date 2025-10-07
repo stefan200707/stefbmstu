@@ -10,7 +10,7 @@ int main() {
     int i = 0, j = 0;
     int var = 2;
     while (k < n*n) {
-        if (i == k / (n - 1) and j < n - (k/(n*n - n) + 1)) {
+        if (i == k / (n*(1+n%2)) and j < n - k / (n*(1+n%2))) {
             j++;    
             a[i][j] = var;
             //cout << var << " ";

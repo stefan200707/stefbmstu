@@ -6,14 +6,12 @@ int main() {
     cin >> n >> m;
     int a[n][m];
 
-    // Ввод матрицы
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             cin >> a[i][j];
         }
     }
 
-    // Минимумы и максимумы по строкам
     int minRow[n], maxRow[n];
     for (int i = 0; i < n; i++) {
         minRow[i] = a[i][0];
@@ -24,7 +22,6 @@ int main() {
         }
     }
 
-    // Минимумы и максимумы по столбцам
     int minCol[m], maxCol[m];
     for (int j = 0; j < m; j++) {
         minCol[j] = a[0][j];
@@ -35,7 +32,6 @@ int main() {
         }
     }
 
-    // Проверка на седловые точки
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             if (a[i][j] == minRow[i] && a[i][j] == maxCol[j]) {

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 int main() {
@@ -38,7 +39,6 @@ int main() {
         verhp[0]--;
         verhp[1]--;
         j--;
-        
         if (k > n*n) break;
         while (i == nizl[0] and j >= nizl[1] and k <= n*n) {
             a[i][j] = k;
@@ -68,7 +68,7 @@ int main() {
     
     for (int i = 0; i < n; i++) {
         for (int j = 0; j< n;j++) {
-            cout << a[i][j] << " ";
+            cout << fixed << setw(n) << a[i][j] << " ";
         }
         cout << endl;
     }
