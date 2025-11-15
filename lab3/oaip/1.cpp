@@ -7,19 +7,6 @@
 #include <cctype>
 using namespace std;
 
-// ----------------------------------------------------------------------
-//                        ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
-// ----------------------------------------------------------------------
-
-// Удаляет пробелы по краям строки
-static inline string trim(const string& s) {
-    size_t i = 0, j = s.size();
-    while (i < j && std::isspace((unsigned char)s[i])) ++i;
-    while (j > i && std::isspace((unsigned char)s[j - 1])) --j;
-    return s.substr(i, j - i);
-}
-
-// Извлекает поле вида "Название: значение" из строки
 string extractField(const string& line, const string& fieldName) {
     size_t pos = line.find(fieldName);
     if (pos == string::npos) return "";
@@ -31,12 +18,18 @@ string extractField(const string& line, const string& fieldName) {
     size_t end = line.find(',', pos);
     string val = (end == string::npos) ? line.substr(pos) : line.substr(pos, end - pos);
 
-    return trim(val);
+    size_t start_pos = val.find_first_not_of(" \t");
+    if (start_pos == string::npos) return "";
+    size_t end_pos = val.find_last_not_of(" \t");
+    return val.substr(start_pos, end_pos - start_pos + 1);
 }
 
-// Безопасный stoi
 int parseIntSafe(const string& s) {
-    string t = trim(s);
+    size_t start_pos = s.find_first_not_of(" \t");
+    if (start_pos == string::npos) return INT_MAX;
+    size_t end_pos = s.find_last_not_of(" \t");
+    string t = s.substr(start_pos, end_pos - start_pos + 1);
+
     if (t.empty()) return INT_MAX;
 
     try {
@@ -48,10 +41,6 @@ int parseIntSafe(const string& s) {
         return INT_MAX;
     }
 }
-
-// ----------------------------------------------------------------------
-//                        ПОИСК ЗАДАЧИ
-// ----------------------------------------------------------------------
 
 void gg(const string& name) {
     ifstream inFile("tasks.txt");
@@ -71,10 +60,6 @@ void gg(const string& name) {
     }
     if (!found) cout << "Задача не найдена." << endl;
 }
-
-// ----------------------------------------------------------------------
-//                        СОРТИРОВКА
-// ----------------------------------------------------------------------
 
 void srt(int n) {
     ifstream in("tasks.txt");
@@ -114,9 +99,6 @@ void srt(int n) {
     for (auto& x : v) cout << x << "\n";
 }
 
-// ----------------------------------------------------------------------
-//                ВЫВОД ЗАДАЧ С ПРИОРИТЕТОМ <= X
-// ----------------------------------------------------------------------
 
 void showByPriority(int maxPriority) {
     ifstream in("tasks.txt");
@@ -135,9 +117,6 @@ void showByPriority(int maxPriority) {
     }
 }
 
-// ----------------------------------------------------------------------
-//                        ДОБАВЛЕНИЕ ЗАДАЧИ
-// ----------------------------------------------------------------------
 
 void addTask() {
     ofstream outFile("tasks.txt", ios::app);
@@ -159,9 +138,6 @@ void addTask() {
             << ", Срок: " << deadline << '\n';
 }
 
-// ----------------------------------------------------------------------
-//                            МЕНЮ
-// ----------------------------------------------------------------------
 
 int main() {
     while (true) {
