@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/Users/stefanrozkov/Desktop/sem-1/bmstu/lab4/build",
+  "command": "/usr/bin/clang++ -DPQXX_HAVE_PQENCRYPTPASSWORDCONN=1 -I/Users/stefanrozkov/Desktop/sem-1/bmstu/lab4/include -I/opt/homebrew/include -I/opt/homebrew/opt/libpqxx/include -I/opt/homebrew/opt/libpq/include -I/usr/local/include -g -std=c++17 -arch arm64 -o CMakeFiles/my_app.dir/src/main.cpp.o -c /Users/stefanrozkov/Desktop/sem-1/bmstu/lab4/src/main.cpp",
+  "file": "/Users/stefanrozkov/Desktop/sem-1/bmstu/lab4/src/main.cpp",
+  "output": "CMakeFiles/my_app.dir/src/main.cpp.o"
+}
+]

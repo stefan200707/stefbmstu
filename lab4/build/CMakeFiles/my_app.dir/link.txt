@@ -1,0 +1,1 @@
+/usr/bin/clang++ -g -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/my_app.dir/src/main.cpp.o -o my_app  /opt/homebrew/lib/libpqxx.dylib /opt/homebrew/lib/libpq.dylib /opt/homebrew/opt/libpqxx/lib/libpqxx.dylib /opt/homebrew/opt/libpq/lib/libpq.dylib

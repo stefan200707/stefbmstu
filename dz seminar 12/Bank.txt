@@ -1,0 +1,2 @@
+id,name,balance
+1,koko,200000

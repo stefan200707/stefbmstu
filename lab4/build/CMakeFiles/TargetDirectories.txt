@@ -1,0 +1,3 @@
+/Users/stefanrozkov/Desktop/sem-1/bmstu/lab4/build/CMakeFiles/my_app.dir
+/Users/stefanrozkov/Desktop/sem-1/bmstu/lab4/build/CMakeFiles/edit_cache.dir
+/Users/stefanrozkov/Desktop/sem-1/bmstu/lab4/build/CMakeFiles/rebuild_cache.dir
